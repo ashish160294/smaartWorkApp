@@ -1,0 +1,62 @@
+<nav class='navbar navbar-expand navbar-light bg-light'>
+        <a class='navbar-brand'>&nbsp;&nbsp;{{pageTitle}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <ul class='nav nav-pills'>
+          <li><a class='nav-link'(click)= "logout()" routerLinkActive='active' [routerLink]="['/welcome']">Logout</a></li>
+          <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/request']">Request</a></li>
+          <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/userDashBoard']">DashBoard</a></li>
+        </ul>
+</nav>
+<div class="card">
+    <div *ngIf = "err">{{errorMessage}}</div>
+  <div class="card-header">
+    <!-- {{pageTitle}} -->
+    Fill below fields to submit request
+  </div>
+  <div class="card-body">
+    <div class="container-fluid">
+        <form [formGroup]="reqForm">
+        <div class="form-group">
+                <label for="EmployeeName">EmployeeName</label>
+                <input type="text" formControlName="EmployeeName" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="applyDate">Date</label>
+            <input type="date" formControlName="applyDate" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" formControlName="desc" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label for="manager">Manager Name</label>
+            <input type="text" formControlName="manager" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile No.</label>
+            <input type="text" formControlName="mobile" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label for="EmpId">Emp Id.</label>
+            <input type="text" formControlName="EmpId" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <button (click)="submitReq()" class="btn btn-primary">Submit</button>
+            <a [routerLink]="['/welcome']" class="btn btn-link">Cancel</a>
+        </div>
+        <p>
+          {{detailsS}}
+        </p>
+        </form>
+    </div>
+  </div>
+</div>

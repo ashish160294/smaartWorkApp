@@ -1,0 +1,32 @@
+[{
+    "username": "Kapil",
+    "email": "romi@f.com",
+    "manager": "Aditi",
+    "mobile": "9876543212",
+    "EmpId": "234567",
+    "desc": "Aivayi",
+    "ApprovedBy": "",
+    "applyDate": "22/03/2018"
+    },
+    {
+        "username": "Sumit",
+        "email": "romi1@f.com",
+        "manager": "Aditi",
+        "mobile": "9876763212",
+        "EmpId": "234565",
+        "desc": "Aivadfyi",
+        "ApprovedBy": "",
+        "applyDate": "2/03/2018"
+        },
+        {
+            "username": "Mohit",
+            "email": "romi2@f.com",
+            "manager": "Aditi",
+            "mobile": "9483543212",
+            "EmpId": "234568",
+            "desc": "Aivasdfdsfdfayi",
+            "ApprovedBy": "",
+            "applyDate": "22/04/2018"
+            }
+    
+    ]
