@@ -1,0 +1,34 @@
+name: spinnaker-deploy
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  log-merge-details:
+    name: current branch
+    runs-on: eg-default
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - name: set vars for last commit
+      id: vars
+      run: |
+        echo "::set-output name=sha_short::$(echo $github.event.head_commit.id)";
+        echo "::set-output name=author::$(echo github.event.head_commit.author.name)"
+        echo "::set-output name=authorEmail::$(echo github.event.head_commit.author.email)"
+        echo "::set-output name=committer::$(echo github.event.head_commit.commiter.name)"
+        echo "::set-output name=committerEmail::$(echo github.event.head_commit.commiter.email)"
+        echo "::set-output name=prTitle::$(echo github.event.head_commit.message)"
+    
+    - name: trigger spinnaker pipeline
+      run: |
+        curl --location --request POST 'https://spinnaker.expedia.biz/api/v1/webhooks/webhook/triggerSubAppDeploy' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "version": ${{steps.vars.outputs.sha_short}},
+            "author_email": ${{steps.vars.outputs.authorEmail}},
+            "commit_email": ${{steps.vars.outputs.committerEmail}},
+            "pr_title": ${{steps.vars.outputs.prTitle}}
+        }'
